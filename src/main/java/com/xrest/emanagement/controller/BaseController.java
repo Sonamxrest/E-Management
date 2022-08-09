@@ -1,7 +1,7 @@
-package com.example.emanagement.controller;
+package com.xrest.emanagement.controller;
 
-import com.example.emanagement.dto.RestDto;
-import com.example.emanagement.service.BaseService;
+import com.xrest.emanagement.dto.RestDto;
+import com.xrest.emanagement.service.BaseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

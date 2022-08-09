@@ -1,4 +1,4 @@
-package com.example.emanagement.repository;
+package com.xrest.emanagement.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

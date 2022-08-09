@@ -1,4 +1,4 @@
-package com.example.emanagement.dto;
+package com.xrest.emanagement.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.emanagement.entity;
+package com.xrest.emanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

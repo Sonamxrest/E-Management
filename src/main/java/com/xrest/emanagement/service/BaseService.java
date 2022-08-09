@@ -1,4 +1,4 @@
-package com.example.emanagement.service;
+package com.xrest.emanagement.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

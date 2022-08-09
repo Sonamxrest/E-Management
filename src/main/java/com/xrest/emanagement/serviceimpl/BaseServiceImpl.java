@@ -1,7 +1,7 @@
-package com.example.emanagement.serviceimpl;
+package com.xrest.emanagement.serviceimpl;
 
-import com.example.emanagement.repository.BaseRepository;
-import com.example.emanagement.service.BaseService;
+import com.xrest.emanagement.repository.BaseRepository;
+import com.xrest.emanagement.service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
