@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: E-Management
+  rsocket:
+    server:
+      port: 8080
+
+
+  liquibase:
+    change-log: db/changelog/changelog.xml
+    enabled: true
+
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: true
+      ddl-auto: none
+  profiles:
+    active: emanagement
