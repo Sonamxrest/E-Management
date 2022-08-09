@@ -16,3 +16,6 @@ spring:
       ddl-auto: none
   profiles:
     active: emanagement
+
+jwt:
+  key: publicStaticVoidMainString
