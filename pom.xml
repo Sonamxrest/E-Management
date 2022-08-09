@@ -16,6 +16,7 @@
     <description>e-management</description>
     <properties>
         <java.version>17</java.version>
+        <mssql.version>8.4.1.jre8</mssql.version>
     </properties>
     <dependencies>
         <dependency>
@@ -62,6 +63,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>${mssql.version}</version>
         </dependency>
     </dependencies>
 
