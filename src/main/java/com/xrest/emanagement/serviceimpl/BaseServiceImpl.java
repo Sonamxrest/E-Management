@@ -9,7 +9,7 @@ import java.util.List;
 
 public class BaseServiceImpl<E,P> implements BaseService<E,P> {
 
-    private BaseRepository<E,P> baseRepository;
+    private  BaseRepository<E,P> baseRepository;
 
     public BaseServiceImpl(BaseRepository<E, P> baseRepository) {
         this.baseRepository = baseRepository;

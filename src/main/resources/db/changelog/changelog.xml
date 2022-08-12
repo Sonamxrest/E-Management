@@ -3,5 +3,27 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog">
-
+<changeSet id="08122022-create-table-userx" author="Sonam">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <tableExists tableName="users" />
+        </not>
+    </preConditions>
+    <createTable tableName="users">
+        <column name="version" type="int"/>
+        <column name="id" type="BIGINT" autoIncrement="true"/>
+        <column name="created_at" type="DATE"/>
+        <column name="last_modified_at" type="DATE"/>
+        <column name="last_modified_by_id" type="BIGINT"/>
+        <column name="created_by_id" type="BIGINT"/>
+        <column name="first_name" type="VARCHAR(256)"/>
+        <column name="last_name" type="VARCHAR(256)"/>
+        <column name="username" type="VARCHAR(256)"/>
+        <column name="password" type="VARCHAR(256)"/>
+        <column name="email" type="VARCHAR(256)"/>
+        <column name="role" type="VARCHAR(256)"/>
+        <column name="profile_pic" type="VARCHAR(256)"/>
+        <column name="dob" type="DATE"/>
+    </createTable>
+</changeSet>
 </databaseChangeLog>

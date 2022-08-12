@@ -4,6 +4,8 @@ import antlr.TokenStreamException;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.xrest.emanagement.core.JWTCONSTANT;
+import com.xrest.emanagement.entity.User;
+import com.xrest.emanagement.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,8 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Authorization extends BasicAuthenticationFilter {
-    public Authorization(AuthenticationManager authenticationManager) {
+    private final UserRepository userRepository;
+    public Authorization(AuthenticationManager authenticationManager, UserRepository userRepository) {
         super(authenticationManager);
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -27,14 +31,16 @@ public class Authorization extends BasicAuthenticationFilter {
             if (null == bearer || !bearer.contains(JWTCONSTANT.PREFIX)) {
                 chain.doFilter(request,response);
             }
-            String token = bearer.substring(6);
+            String token = bearer.substring(7);
             String username = JWT.require(Algorithm.HMAC512(JWTCONSTANT.KEY.getBytes())).build().verify(token).getSubject();
             //user repository
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username,null,null);
+            User user
+                     = userRepository.findUserByUsername(username);
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username,null,user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            chain.doFilter(request,response);
         } catch (Exception e) {
 
         }
-        super.doFilterInternal(request, response, chain);
     }
 }

@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xrest.emanagement.core.JWTCONSTANT;
 import com.xrest.emanagement.dto.LoginDto;
+import com.xrest.emanagement.entity.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -20,12 +21,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Authentication extends UsernamePasswordAuthenticationFilter {
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    public Authentication(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
+
     @Override
     public org.springframework.security.core.Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-            LoginDto loginDto = objectMapper.readValue(request.getInputStream(),LoginDto.class);
+            User loginDto = objectMapper.readValue(request.getInputStream(),User.class);
             if (loginDto.getUsername() == null || loginDto.getPassword() == null) {
                 throw new UsernameNotFoundException("Not Valid");
             }
@@ -38,8 +44,9 @@ public class Authentication extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, org.springframework.security.core.Authentication authResult) throws IOException, ServletException {
+        User user = (User) authResult.getPrincipal();
        String token = JWT.create()
-               .withSubject("admin")
+               .withSubject(user.getUsername())
                .withExpiresAt(new Date(System.currentTimeMillis() + JWTCONSTANT.EXPIRATION))
                .sign(Algorithm.HMAC512(JWTCONSTANT.KEY.getBytes()));
        response.getWriter().write(JWTCONSTANT.PREFIX + " " +token);
