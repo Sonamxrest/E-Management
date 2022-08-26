@@ -23,22 +23,25 @@ import java.util.Date;
 @Table(name = "users")
 public class User extends BaseEntity<Long> implements UserDetails {
 
-    String firstName;
+    private String firstName;
 
-    String lastName;
+    private String lastName;
     @JsonFormat(pattern = "dd:MM:yyyy hh:mm:ss")
-    Date dob;
+    private Date dob;
 
-    String profilePic;
+    private String profilePic;
 
-    String password;
+    private String password;
 
-    String role;
+    private String role;
 
-    String email;
+    private String email;
 
-    String username;
+    private String username;
 
+    private String otp;
+
+    private Boolean verified;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

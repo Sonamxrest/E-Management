@@ -8,6 +8,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,14 +28,17 @@ public class SecurityCore extends WebSecurityConfigurerAdapter {
 
     private final UserServiceImpl userService;
 
-    public SecurityCore(UserRepository userRepository, UserServiceImpl userService) {
+    private final JavaMailSenderImpl javaMailSender;
+
+    public SecurityCore(UserRepository userRepository, UserServiceImpl userService, JavaMailSenderImpl javaMailSender) {
         this.userRepository = userRepository;
         this.userService = userService;
+        this.javaMailSender = javaMailSender;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().addFilter(new Authentication(authenticationManager())).addFilter(new Authorization(authenticationManager(),userRepository)).authorizeRequests()
+        http.csrf().disable().addFilter(new Authentication(authenticationManager(), javaMailSender)).addFilter(new Authorization(authenticationManager(),userRepository)).authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/v1/user/register").permitAll()
                 .anyRequest().authenticated();
