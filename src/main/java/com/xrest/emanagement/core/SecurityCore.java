@@ -63,7 +63,6 @@ public class SecurityCore extends WebSecurityConfigurerAdapter {
     @Bean
     public FilterRegistrationBean customCorsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
         final CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");

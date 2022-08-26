@@ -42,9 +42,9 @@ public class OTP implements Runnable{
             mimeMessageHelper.setTo(email);
             mimeMessageHelper.setFrom(new InternetAddress(javaMailSender.getUsername()));
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Your OTP is:");
+            stringBuilder.append("Your OTP is: ");
             stringBuilder.append(otp);
-            stringBuilder.append("<br>This is an automated Email Please Do Not Reply");
+            stringBuilder.append(" This is an automated Email Please Do Not Reply");
             mimeMessageHelper.setText(stringBuilder.toString());
         });
 
