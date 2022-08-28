@@ -41,6 +41,7 @@ public class SecurityCore extends WebSecurityConfigurerAdapter {
         http.csrf().disable().addFilter(new Authentication(authenticationManager(), javaMailSender)).addFilter(new Authorization(authenticationManager(),userRepository)).authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/v1/user/register").permitAll()
+                .antMatchers("/v1/user/otp/verify").permitAll()
                 .anyRequest().authenticated();
     }
 

@@ -35,6 +35,7 @@ public class OTP implements Runnable{
             user.setOtp(otp.toString());
             user.setVersion(1);
             user.setVerified(Boolean.FALSE);
+            user.setExpiration(System.currentTimeMillis() + 60000);
             userRepository.save(user);
         javaMailSender.send(mimeMessage -> {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);

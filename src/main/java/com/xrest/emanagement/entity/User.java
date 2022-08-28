@@ -43,6 +43,8 @@ public class User extends BaseEntity<Long> implements UserDetails {
 
     private Boolean verified;
 
+    private Long expiration ;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return new ArrayList<>(Collections.singleton(new SimpleGrantedAuthority(this.role)));

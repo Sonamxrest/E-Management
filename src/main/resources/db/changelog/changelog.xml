@@ -24,18 +24,9 @@
         <column name="role" type="VARCHAR(256)"/>
         <column name="profile_pic" type="VARCHAR(256)"/>
         <column name="dob" type="DATE"/>
+        <column name="otp" type="VARCHAR(256)"/>
+        <column name="expiration" type="BIGINT"/>
+        <column name="verified" type="BOOLEAN" defaultValue="false"/>
     </createTable>
 </changeSet>
-    <changeSet id="02" author="Sonam">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="users" columnName="otp"/>
-                <columnExists tableName="users" columnName="verified"/>
-            </not>
-        </preConditions>
-        <addColumn tableName="users">
-            <column name="otp" type="VARCHAR(256)"/>
-            <column name="verified" type="BOOLEAN" defaultValue="false"/>
-        </addColumn>
-    </changeSet>
 </databaseChangeLog>

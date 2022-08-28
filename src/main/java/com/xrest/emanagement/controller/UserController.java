@@ -2,6 +2,7 @@ package com.xrest.emanagement.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xrest.emanagement.dto.LoginDto;
+import com.xrest.emanagement.dto.RestDto;
 import com.xrest.emanagement.entity.User;
 import com.xrest.emanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,10 @@ public class UserController extends BaseController<User,Long> {
     private ResponseEntity<?> getAl() {
         return  new ResponseEntity<List>(userService.findAll(), HttpStatus.OK);
     }
+
+    @PostMapping ("/otp/verify")
+    private  ResponseEntity<?> verifyOtp(@RequestParam("otp") Long otp, @RequestParam("userID") Long id) {
+    return new RestDto().successModel(userService.verifyOtp(otp, id));
+        }
+
 }

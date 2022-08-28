@@ -30,11 +30,28 @@ public class UserServiceImpl extends BaseServiceImpl<User,Long> implements UserS
         User existing = userRepository.findUserByEmail(user.getEmail());
         if (null == existing) {
             user = userRepository.save(user);
-            otp.setEmail(user.getEmail());
-            Thread thread = new Thread(otp);
-            thread.start();
+            sendOtp(user);
             return user;
         }
         return null;
+    }
+
+    @Override
+    public User verifyOtp(Long otp, Long userId) {
+        User user= userRepository.fuindUserByOtp(userId,otp);
+        Long currentTime = System.currentTimeMillis();
+        if (currentTime > user.getExpiration() ) {
+            sendOtp(user);
+        } else {
+            user.setVerified(Boolean.TRUE);
+           user = userRepository.save(user);
+        }
+        return user;
+    }
+
+    public void sendOtp(User user) {
+        otp.setEmail(user.getEmail());
+        Thread thread = new Thread(otp);
+        thread.start();
     }
 }

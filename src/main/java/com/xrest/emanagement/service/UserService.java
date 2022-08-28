@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 
 public interface UserService extends UserDetailsService , BaseService<User,Long>{
     User register(User user);
+
+    User verifyOtp(Long otp, Long userid);
 }
