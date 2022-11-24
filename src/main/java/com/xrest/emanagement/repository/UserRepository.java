@@ -3,8 +3,9 @@ package com.xrest.emanagement.repository;
 import com.xrest.emanagement.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface UserRepository extends BaseRepository<User,Long>{
     User findUserByUsername(String username);
 
