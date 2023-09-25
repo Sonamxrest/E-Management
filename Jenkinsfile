@@ -10,6 +10,8 @@ pipeline {
 		stage('Build'){
 			steps {
 				sh "mvn clean install -DskipTests"
+				sh "docker build -t emanagement ."
+				sh "docker ps"
 			}
 		}
 		stage('Test'){
@@ -19,7 +21,7 @@ pipeline {
 		}
 		stage('Deploy') {
 			steps {
-			    sh "mvn jar:jar deploy:deploy"
+			    echo "Run Passed"
 			}
 		}
 	}
