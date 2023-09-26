@@ -1,6 +1,5 @@
-
 pipeline {
-	agent none
+	agent any
 	environment {
 		mavenHome = tool 'jenkins-maven'
 	}
@@ -10,12 +9,11 @@ pipeline {
 	stages {
 		stage('Build'){
 			steps {
-				sh "mvn install -Dmaven.test.skip=true"
+				sh "mvn clean install"
 			}
 		}
 		stage('Image') {
 			steps {
-				sh "ls"
 				sh "docker build -t emanagement ."
 				sh "docker ps"
 			}
