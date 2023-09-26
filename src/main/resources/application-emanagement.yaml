@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url:  jdbc:sqlserver://103.94.159.179:1433;database=java
-    username: dev
-    password: sbdb@141
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url:  jdbc:mysql://localhost:3306/mydatabase
+    username: sa
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: true
