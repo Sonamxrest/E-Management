@@ -14,6 +14,7 @@ pipeline {
 		}
 		stage('Image') {
 			steps {
+				sh "ls"
 				sh "docker build -t emanagement ."
 				sh "docker ps"
 			}
