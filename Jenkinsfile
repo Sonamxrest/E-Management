@@ -1,6 +1,6 @@
 
 pipeline {
-	agent { dockerfile true }
+	agent none
 	environment {
 		mavenHome = tool 'jenkins-maven'
 	}
