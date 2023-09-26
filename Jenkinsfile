@@ -1,12 +1,18 @@
 pipeline {
 	agent none
+	environment {
+		mavenHome = tool 'jenkins-maven'
+	}
+	tools {
+		jdk 'java-17'
+	}
   stages {
   	stage('Maven Install') {
-    	agent {
-      	docker {
-        	image 'maven:3.5.0'
-        }
-      }
+   //  	agent {
+   //    	docker {
+   //      	image 'maven:3.5.0'
+   //      }
+   //    }
       steps {
       	sh 'mvn clean install'
       }
@@ -14,6 +20,7 @@ pipeline {
     stage('Docker Build') {
     	agent any
       steps {
+        sh 'docker --version'
       	sh 'docker build -t shanem/spring-petclinic:latest .'
       }
     }
