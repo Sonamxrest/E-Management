@@ -1,8 +1,8 @@
 spring:
   datasource:
     url:  jdbc:mysql://192.168.18.90:3306/mydatabase
-    username: sa
-    password: root
+    username: root
+    password: password
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: true
