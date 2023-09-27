@@ -3,10 +3,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog">
-<changeSet id="08122022-create-table-userx" author="Sonam">
+<changeSet id="08122022-create-table-users_table" author="Sonam">
     <preConditions onFail="MARK_RAN">
         <not>
-            <tableExists tableName="users" />
+            <tableExists tableName="users_table" />
         </not>
     </preConditions>
     <createTable tableName="users_table">
