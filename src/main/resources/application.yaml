@@ -1,19 +1,16 @@
 spring:
   application:
     name: E-Management
-  rsocket:
-    server:
-      port: 8080
 
 
   liquibase:
     change-log: db/changelog/changelog.xml
-    enabled: true
+    enabled: false
 
   jpa:
     hibernate:
       use-new-id-generator-mappings: false
-      ddl-auto: none
+      ddl-auto: update
 #    properties:
 #      hibernate:
 #        enable_lazy_load_no_trans: true
@@ -26,3 +23,5 @@ spring:
 
 jwt:
   key: publicStaticVoidMainString
+server:
+  port: 8090
