@@ -9,7 +9,7 @@
             <tableExists tableName="users" />
         </not>
     </preConditions>
-    <createTable tableName="users">
+    <createTable tableName="users_table">
         <column name="version" type="int"/>
         <column name="id" type="BIGINT" autoIncrement="true"/>
         <column name="created_at" type="DATE"/>
