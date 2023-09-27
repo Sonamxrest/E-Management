@@ -20,7 +20,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "users_table")
 public class User extends BaseEntity<Long> implements UserDetails {
 
     private String firstName;
