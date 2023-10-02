@@ -1,32 +1,36 @@
 pipeline {
-	agent any
-	environment {
-		mavenHome = tool 'jenkins-maven'
-	}
-	tools {
-		jdk 'java-17'
-	}
-	stages {
-		stage('Build'){
-			steps {
-				sh "mvn clean install"
-			}
-		}
-		stage('Image') {
-			steps {
-				sh "docker build -t emanagement ."
-				sh "docker ps"
-			}
-		}
-		stage('Test'){
-			steps{
-				sh "mvn test"
-			}
-		}
-		stage('Deploy') {
-			steps {
-			    echo "Run Passed"
-			}
-		}
-	}
+environment {
+registry = "sonamxrest/emanagement"
+registryCredential = '1234@Sonam'
+dockerImage = ''
+}
+agent any
+stages {
+stage('Cloning our Git') {
+steps {
+git 'https://github.com/Sonamxrest/E-Management'
+}
+}
+stage('Building our image') {
+steps{
+script {
+dockerImage = docker.build registry + ":$BUILD_NUMBER"
+}
+}
+}
+stage('Deploy our image') {
+steps{
+script {
+docker.withRegistry( '', registryCredential ) {
+dockerImage.push()
+}
+}
+}
+}
+stage('Cleaning up') {
+steps{
+sh "docker rmi $registry:$BUILD_NUMBER"
+}
+}
+}
 }
