@@ -14,6 +14,7 @@ public class TEST {
 //        this.javaMailSender = javaMailSender;
 //    }
 
+    //main sender working
     public static void main (String a[]) {
        Runnable runnable = ()->{
            send("");
