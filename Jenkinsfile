@@ -1,5 +1,10 @@
 pipeline {
-	agent any
+	agent {
+		 docker {
+            image 'emanagement'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+	}
 	environment {
 		mavenHome = tool 'jenkins-maven'
 	}
